@@ -17,16 +17,18 @@ $app->group('/users', function (RouteCollectorProxy $group){
         return $result;
     });
 
-    $group->get('/get-user/{id}', function (Request $request, Response $response, $args) {
+    $group->post('/get-user', function (Request $request, Response $response, $args) {
         $apiController = new ApiController();
-        $id = $request->getAttribute('id') ?? null;
+        $parsedBody = $request->getParsedBody();
+        $id = isset($parsedBody['id']) ? $parsedBody['id'] : null;
         $result = $apiController->getUserById($response, $id);
         return $result;
     });
 
-    $group->delete('/remove/{id}', function (Request $request, Response $response, $args) {
+    $group->delete('/remove', function (Request $request, Response $response, $args) {
         $apiController = new ApiController();
-        $id = $request->getAttribute('id') ?? null;
+        $parsedBody = $request->getParsedBody();
+        $id = isset($parsedBody['id']) ? $parsedBody['id'] : null;
         $result = $apiController->removeUser($response, $id);
         return $result;
     });

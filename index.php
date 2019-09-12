@@ -10,7 +10,4 @@ $app = AppFactory::create();
 
 require ROOT . '/routes/api.php';
 
-$dbConf = require ROOT . '/config/local_db_config.php';
-$db = new DBHelper($dbConf);
-
 $app->run();
