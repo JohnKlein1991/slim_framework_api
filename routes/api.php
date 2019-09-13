@@ -25,7 +25,7 @@ $app->group('/users', function (RouteCollectorProxy $group){
         return $result;
     });
 
-    $group->delete('/remove', function (Request $request, Response $response, $args) {
+    $group->post('/remove', function (Request $request, Response $response, $args) {
         $apiController = new ApiController();
         $parsedBody = $request->getParsedBody();
         $id = isset($parsedBody['id']) ? $parsedBody['id'] : null;
